@@ -229,3 +229,4 @@ For severe peak disease severity, $t_\frac{1}{2}$ = $\frac{-ln(2)}{\hat{\beta_{1
 ```
 
 
+.
