@@ -69,6 +69,7 @@ setwd("/Users/seamusgallivan/Documents/ucla/200B/data")
 covid <- as_tibble(read_sas("covid_immune.sas7bdat"))
 covid
 ```
+
 ### Question 1
 
 **Data transformations**
