@@ -1,0 +1,230 @@
+---
+title: "200b_HW4"
+author: "Seamus Gallivan"
+date: "1/27/2022"
+output: html_document
+---
+
+# Part A: Lab 4 Questions Solutions 
+
+**Question 1**
+
+How do we interpret the coefs of the interaction terms? Compare these parameter estimates to those from the separate models.
+
+* $\beta_{5} = 0.30337$ is the difference in expected value of risk between the North East and    North Central regions when length is increased by one unit. $\beta_{6} = 0.43930$ is the difference in expected value of risk between the North East and South regions when length is increased by one unit. $\beta_{7} = -0.29237$ is the difference in expected value of risk between the North East and West regions when length is increased by one unit. These are all differences in slope between the two specifed regions.
+* In the separate models, the difference between $\beta_{region1}$ and $\beta_{region2}$, $\beta_{region3}$ and $\beta_{region4}$ are exactly equal to $\beta_{5}$,$\beta_{6}$ and $\beta_{7}$ accordingly. 
+
+**Question 2**
+
+How would we test whether the slope coef for hospitals in the North Central region is equal to the slope coef for hospitals in the South region? Run this test.
+
+* Conduct a partial F test with the null hypothesis that $\beta_{nclength}$=$\beta_{slength}$. 
+
+*SAS code*: 
+proc reg data=d.senic;
+model risk = regnc regs regw length nclength slength wlength;
+lengthRegion: test nclength=slength;
+run; quit;
+
+* P = .5374 demonstrating that we cannot reject that the slope coef for hospitals in the North Central region is equal to the slope coef for hospitals in the South region. 
+
+**Question 3**
+
+How would we test whether the slope coef for hospitals in the West region is equal to the slope coef for hospitals in the North East region?  Run this test.
+
+* Since the North East region is the reference region, conduct a partial F test with the null hypothesis that $\beta_{wlength}$ = 0.
+
+*SAS code*: proc reg data=d.senic;
+    model risk = regnc regs regw length nclength slength wlength;
+    lengthRegion: test wlength=0;
+run; quit;
+
+* P = .3147 demonstrating that we cannot reject that the slope coef for hospitals in the North East region is equal to the slope coef for hospitals in the West region.
+
+**Question 4**
+
+How do these regression coefficients compare to the previous ones, with length not centered? Interpret each regression coef, including the intercept.
+
+* Every coefficient is the same except for the intercept and 3 region dummy variable coefficients.
+
+* $\beta_{0}$ = 4.42042 is the expected value of risk for those in the North East region when length is equal to its mean (intercept). 
+* $\beta_{1}$ -0.04825 is the difference in expected value of risk between those in the North Central and North East regions when length is equal to its mean (the difference in intercepts). 
+* $\beta_{2}$ -0.15325 is the difference in expected value of risk between those in the South and North East regions when length is equal to its mean (the difference in intercepts).
+* $\beta_{3}$ -0.01893 is the difference in expected value of risk between those in the West and North East regions when length is equal to its mean (the difference in intercepts).
+* $\beta_{4}$ 0.30556	 is the difference in expected value of risk when length is increased by one unit for those in the North East region (slope). 
+* $\beta_{5}$ 0.30337 is the difference in expected value of risk between those in the North Central and North East regions when length in increased by one unit (the difference in slopes). 
+* $\beta_{6}$ 0.43930 is the difference in expected value of risk between those in the South and North East regions when length in increased by one unit (the difference in slopes).
+* $\beta_{7}$ -0.29237 is the difference in expected value of risk between those in the West and North East regions when length in increased by one unit (the difference in slopes). 
+
+# Part B: interactions and log transformed variables
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(haven)
+setwd("/Users/seamusgallivan/Documents/ucla/200B/data")
+covid <- as_tibble(read_sas("covid_immune.sas7bdat"))
+covid
+```
+### Question 1
+
+**Data transformations**
+```{r}
+#part a 
+covid1 <- covid %>%
+  mutate(SpikeIgG_log10 = log10(SpikeIgG))
+#part b 
+covid1 <- covid1 %>%
+  mutate(SpikeIgG_ln = log(SpikeIgG))
+#part c 
+covid1 <- covid1 %>%
+  mutate(age_ln = log(age))
+```
+
+**Part A**
+```{r}
+model1a <- lm(SpikeIgG_log10 ~ daysPSO, data = covid1)
+summary(model1a)
+plot(model1a)
+```
+
+*Interpretation*
+
+* A one day increase in daysPSO is associated with a multiplicative decrease in average SpikeIgG by $10^{-0.0019194}$. A decrease of about 0.4%.
+
+* Overall the model has an acceptable fit. The residuals vs fitted plot is indicative of homogeneity of variance and $E(\varepsilon_{i}) = 0$. The Q-Q plot has somewhat heavy tails which violates our $\varepsilon_{i}$ ~ normal assumption. 
+
+**Linear regression model 1b**
+```{r}
+model1b <- lm(SpikeIgG_ln ~ daysPSO, data = covid1)
+summary(model1b)
+plot(model1b)
+```
+
+*Interpretation*
+
+* A one day increase in daysPSO is associated with a multiplicative decrease in average SpikeIgG by $e^{-0.004420}$. A decrease of about 0.4%.
+
+* The model has a worse fit than the $log_{10}$ transformation of SpikeIgG. The residuals vs fitted plot is indicative of homogeneity of variance and $E(\varepsilon_{i}) = 0$. The Q-Q plot has heavy tails which violates our $\varepsilon_{i}$ ~ normal assumption. 
+
+
+**Linear regression model 1c**
+```{r}
+model1c <- lm(daysPSO ~ age_ln, data = covid1)
+summary(model1c)
+plot(model1c)
+```
+
+*Interpretation*
+
+* A 1% increase in age is associated with an increase in mean daysPSO of 0.1614.
+
+* The model has a terrible fit. The residuals vs fitted plot violates homogeneity of variance and $E(\varepsilon_{i}) = 0$. The Q-Q plot has heavy tails which violates our $\varepsilon_{i}$ ~ normal assumption. 
+
+### Question 2
+
+**Data transformations**
+```{r}
+covid2 <- covid %>%
+  mutate(SpikeIgA_ln = log(SpikeIgA))
+covid2 <- covid2 %>%
+  mutate(SpikeIgG_ln = log(SpikeIgG))
+```
+
+**Part A** 
+```{r}
+#distributions of SpikeIgA and SpikeIgG
+a <- ggplot(covid2, aes(SpikeIgA))
+a + geom_histogram()
+b <- ggplot(covid2, aes(SpikeIgG))
+b + geom_histogram()
+#log transformed distributions 
+c <- ggplot(covid2, aes(SpikeIgA_ln))
+c + geom_histogram()
+d <- ggplot(covid2, aes(SpikeIgG_ln))
+d + geom_histogram()
+```
+
+**Part B**
+```{r}
+#loess curve 
+e <- ggplot(covid2, aes(SpikeIgA, SpikeIgG))
+e + geom_point() + 
+  geom_smooth(method = "loess")
+#linear model 
+e + geom_point() +
+  geom_smooth(method = "lm")
+```
+
+**Part C**
+```{r}
+model2c <- lm(SpikeIgG_ln ~ SpikeIgA_ln, data = covid2)
+summary(model2c)
+```
+
+*Interpretation*
+
+* A 1% increase in SpikeIgA is associated with an increase in mean SpikeIgG of 0.004735.
+
+**Part D**
+```{r}
+plot(model2c)
+```
+
+*Interpretation*
+
+* The model is fit well. The residuals vs fitted plot is indicative of homogeneity of variance and $E(\varepsilon_{i}) = 0$. The Q-Q plot's tails are not too heavy which supports our $\varepsilon_{i}$ ~ normal assumption. 
+
+### Question 3
+
+**Part A**
+```{r}
+covid %>%
+  filter(is.na(daysPSO & SpikeIgG) == F) %>%
+  count(peakDiseaseSeverity)
+```
+
+**Part B**
+```{r}
+#create dummy variables with asymptomatic/mild (peakdisease = 1) as ref group
+covid3 <- covid2 %>%
+  mutate(
+    pds2 = if_else(peakDiseaseSeverity == 2, 1, 0),
+    pds3 = if_else(peakDiseaseSeverity == 3, 1, 0)
+  )
+#linear model with interaction  
+model3b <- lm(SpikeIgG_ln ~ daysPSO + pds2 + pds3 +
+                I(daysPSO * pds2) + I(daysPSO * pds3), data = covid3)
+summary(model3b)
+```
+
+**Part C**
+```{r}
+#reduced model
+model3c = lm(SpikeIgG_ln ~ I(daysPSO * pds2) +
+               I(daysPSO * pds3), data = covid3) 
+#compare full and reduced model 
+anova(model3c, model3b)
+```
+
+**Part D**
+
+For asymptomatic or mild peak disease severity, half-life = $t_\frac{1}{2}$ = $\frac{-ln(2)}{\hat{\beta_{1}}}$
+```{r}
+-log(2)/(-0.0048793)
+```
+
+For moderate peak disease severity, $t_\frac{1}{2}$ = $\frac{-ln(2)}{\hat{\beta_{1}}+\hat\beta_{4}}$
+```{r}
+-log(2)/(-0.0048793 + 0.0009484)
+```
+
+For severe peak disease severity, $t_\frac{1}{2}$ = $\frac{-ln(2)}{\hat{\beta_{1}}+\hat\beta_{5}}$
+```{r}
+-log(2)/(-0.0048793 + -0.0073466)
+```
+
+
