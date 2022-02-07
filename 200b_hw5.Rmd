@@ -14,13 +14,13 @@ For the regression of logdocper on logpopdens bedp1000 hsgrad poverty unemp pcin
 
 **Solution**
 
-* $\hat\beta_{0}$ = 2.98003. Intercept of the line. The expected value of “logdocper” when all independent variables in the model are equal to zero. 
-* $\hat\beta_{1}$ = 0.04832. The percent increase of “docper” for a one percent increase in “popdens”, controlling for the other variables in the model. 
-* $\hat\beta_{2}$ = 0.15378. The percent increase of “docper” for a one-unit increase in “bedp1000”, controlling for the other variables in the model.
-* $\hat\beta_{3}$ = 0.01711. The percent increase of “docper” for a one-unit increase in “hsgrad”, controlling for the other variables in the model.
-* $\hat\beta_{4}$ = 0.04025. The percent increase of “docper” for a one-unit increase in “poverty”, controlling for the other variables in the model.
-* $\hat\beta_{5}$ = -0.02622. The percent decrease of “docper” for a one-unit increase in “unemp”, controlling for the other variables in the model.
-* $\hat\beta_{6}$ = 0.06515. The percent increase of “docper” for a one-unit increase in “pcinck”, controlling for the other variables in the model.
+* $\hat\beta_{0}$ = 2.98003. Intercept of the line. The expected value of log transformed doctors per 1000 population when all independent variables in the model are equal to zero. 
+* $\hat\beta_{1}$ = 0.04832. The percent increase of doctors per 1000 population for a one percent increase in population density, controlling for the other variables in the model. 
+* $\hat\beta_{2}$ = 0.15378. The percent increase of doctors per 1000 population for a one-unit increase in hospital beds per 1000 population, controlling for the other variables in the model.
+* $\hat\beta_{3}$ = 0.01711. The percent increase of doctors per 1000 population for a one-unit increase in percent of adults who graduated high school, controlling for the other variables in the model.
+* $\hat\beta_{4}$ = 0.04025. The percent increase of doctors per 1000 population for a one-unit increase in percent of adults with income below the poverty line, controlling for the other variables in the model.
+* $\hat\beta_{5}$ = -0.02622. The percent decrease of doctors per 1000 population for a one-unit increase in percent of unemployed labor force, controlling for the other variables in the model.
+* $\hat\beta_{6}$ = 0.06515. The percent increase of doctors per 1000 population for a one-unit increase in per capita income (in thousands), controlling for the other variables in the model.
 
 ### Q2 
 For the predictor pcinck, verify that the SE of the regression coef is equal to the formula involving R^2_j given in lecture, ie, find each of the quantities in the SE and calculate the SE, verifying it is equal to the SE given in the SAS output for the regression.
