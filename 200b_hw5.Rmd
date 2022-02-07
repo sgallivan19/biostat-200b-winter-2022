@@ -41,7 +41,7 @@ $0.00556^2$ = $\frac{1}{1-0.5808}\frac{0.09370}{(439)4.0591920^2}$
 (1/(1-.5808))*(.0937)/((439)*(4.0591920^2))
 
 ```
-They are essentially equivalent, verifying that the SE of the regression coef is equal to the formula involving R^2_j given in lecture.
+Both sides of the equation are essentially equivalent, verifying that the SE of the regression coef is equal to the formula involving $R_{j}^2$ given in lecture.
 
 ### Q3
 In general, would you expect VIFs to increase or decrease as more predictors are added to a model?  Provide a justification for your answer.  Illustrate by providing some example regressions using the CDI dataset.
