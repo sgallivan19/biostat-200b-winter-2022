@@ -9,8 +9,10 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-1. For the regression of logdocper on logpopdens bedp1000 hsgrad poverty unemp pcinck,
-provide an interpretation of each of the regression coefficients.
+### Q1
+For the regression of logdocper on logpopdens bedp1000 hsgrad poverty unemp pcinck, provide an interpretation of each of the regression coefficients.
+
+**Solution**
 
 * $\hat\beta_{0}$ = 2.98003. Intercept of the line. The expected value of “logdocper” when all independent variables in the model are equal to zero. 
 * $\hat\beta_{1}$ = 0.04832. The percent increase of “docper” for a one percent increase in “popdens”, controlling for the other variables in the model. 
@@ -19,3 +21,27 @@ provide an interpretation of each of the regression coefficients.
 * $\hat\beta_{4}$ = 0.04025. The percent increase of “docper” for a one-unit increase in “poverty”, controlling for the other variables in the model.
 * $\hat\beta_{5}$ = -0.02622. The percent decrease of “docper” for a one-unit increase in “unemp”, controlling for the other variables in the model.
 * $\hat\beta_{6}$ = 0.06515. The percent increase of “docper” for a one-unit increase in “pcinck”, controlling for the other variables in the model.
+
+### Q2 
+For the predictor pcinck, verify that the SE of the regression coef is equal to the formula involving R^2_j given in lecture, ie, find each of the quantities in the SE and calculate the SE, verifying it is equal to the SE given in the SAS output for the regression.
+
+**Solution**
+
+$R_{j}^2$ = 0.5808, $\hat\sigma^2$ = 0.09370, 
+
+### Q3
+In general, would you expect VIFs to increase or decrease as more predictors are added to a model?  Provide a justification for your answer.  Illustrate by providing some example regressions using the CDI dataset.
+
+**Solution**
+
+I would expect VIF to increase. As more predictors are added to a model, there is likely going to be more correlation between the predictors, not less. Thus, $R_{j}^2$ is more likely to increase. If $R_{j}^2$ increases, then so does VIF. 
+
+Looking at the $R_{pcinck}^2$ in the following regression models illustrates this phenomenon. 
+
+regression of logdocper on logpopdens bedp1000 hsgrad poverty unemp pcinck, $R_{pcinck}^2$ = 2.38561
+
+regression of logdocper on hsgrad poverty unemp pcinck, $R_{pcinck}^2$ = 1.62318
+
+regression of logdocper on unemp pcinck, $R_{pcinck}^2$ = 1.11579
+
+
