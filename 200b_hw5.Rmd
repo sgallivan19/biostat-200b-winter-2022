@@ -1,0 +1,21 @@
+---
+title: "200b_hw5_partb"
+author: "Seamus Gallivan"
+date: "2/6/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. For the regression of logdocper on logpopdens bedp1000 hsgrad poverty unemp pcinck,
+provide an interpretation of each of the regression coefficients.
+
+$\hat\beta_{0}$ = 2.98003
+$\hat\beta_{1}$ = 0.04832
+$\hat\beta_{2}$ = 0.15378
+$\hat\beta_{3}$ = 0.01711
+$\hat\beta_{4}$ = 0.04025	
+$\hat\beta_{5}$ = -0.02622
+$\hat\beta_{6}$ = 0.06515
