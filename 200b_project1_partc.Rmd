@@ -23,6 +23,13 @@ BMI is significant between the two groups at p < .1 level.
 
 Now, I am going to check if there is a significant difference between the evaluable group and the non-evaluable group means for baseline variables. 
 ```{r}
+df1 <- df %>% 
+  select(income3, fsi2) %>%
+  mutate(fsi2inc = ifelse(is.na(income3), NA, fsi2)) %>% 
+  mutate(fsi2noinc = ifelse(is.na(income3), fsi2, NA))
 
+t.test(df1$fsi2inc, df1$fsi2noinc)
 ```
+The results are not significant. We cannot reject that the difference in means between the two groups is zero. 
+
 
