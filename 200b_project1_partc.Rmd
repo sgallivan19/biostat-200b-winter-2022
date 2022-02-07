@@ -32,4 +32,9 @@ t.test(df1$fsi2inc, df1$fsi2noinc)
 ```
 The results are not significant. We cannot reject that the difference in means between the two groups is zero. 
 
+Thus, in our regression model, we will only control for BMI. Here we now run our regression model, regressing FSI score after treatment on body mass index and treatment group.
+```{r}
+model <- lm(data = df, fsi2 ~ bmi + tx_group)
+summary(model)
+```
 
