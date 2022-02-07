@@ -38,10 +38,10 @@ I would expect VIF to increase. As more predictors are added to a model, there i
 
 Looking at the $R_{pcinck}^2$ in the following regression models illustrates this phenomenon. 
 
-regression of logdocper on logpopdens bedp1000 hsgrad poverty unemp pcinck, $R_{pcinck}^2$ = 2.38561
+* regression of logdocper on logpopdens bedp1000 hsgrad poverty unemp pcinck, $R_{pcinck}^2$ = 2.38561
 
-regression of logdocper on hsgrad poverty unemp pcinck, $R_{pcinck}^2$ = 1.62318
+* regression of logdocper on hsgrad poverty unemp pcinck, $R_{pcinck}^2$ = 1.62318
 
-regression of logdocper on unemp pcinck, $R_{pcinck}^2$ = 1.11579
+* regression of logdocper on unemp pcinck, $R_{pcinck}^2$ = 1.11579
 
 
