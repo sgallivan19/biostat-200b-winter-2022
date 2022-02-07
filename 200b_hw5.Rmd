@@ -33,8 +33,15 @@ $\widehat{Var}(\hat\beta_{pcinck})$ = $(SE(\hat\beta_{pcinck}))^2$ = $0.00556^2$
 Using these values in the equation 
 
 $\widehat{Var}(\hat\beta_{pcinck})$ = $\frac{1}{1-R_{pcinck}^2}\frac{\hat\sigma^2}{(n-1)s_{pcinck}^2}$
+$0.00556^2$ = $\frac{1}{1-0.5808}\frac{0.09370}{(439)4.0591920^2}$
+```{r}
+#left side of equation
+0.00556^2
+#right side of equation 
+(1/(1-.5808))*(.0937)/((439)*(4.0591920^2))
 
-
+```
+They are essentially equivalent, verifying that the SE of the regression coef is equal to the formula involving R^2_j given in lecture.
 
 
 
