@@ -27,7 +27,7 @@ For the predictor pcinck, verify that the SE of the regression coef is equal to 
 
 **Solution**
 
-$R_{j}^2$ = 0.5808, $\hat\sigma^2$ = 0.09370, 
+$R_{pcinck}^2$ = 0.5808, $\hat\sigma^2$ = 0.09370, n = 440, $s_{pcinck}^2$ = $4.0591920^2$
 
 ### Q3
 In general, would you expect VIFs to increase or decrease as more predictors are added to a model?  Provide a justification for your answer.  Illustrate by providing some example regressions using the CDI dataset.
