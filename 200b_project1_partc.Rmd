@@ -1,0 +1,18 @@
+---
+title: "200b_project1_partc"
+author: "Seamus Gallivan"
+date: "2/6/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(haven)
+setwd("/Users/seamusgallivan/Documents/ucla/200B/projects")
+df <- haven::read_sas("ptw_project1.sas7bdat")
+```
+
