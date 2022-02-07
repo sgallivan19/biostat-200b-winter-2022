@@ -12,10 +12,10 @@ knitr::opts_chunk$set(echo = TRUE)
 1. For the regression of logdocper on logpopdens bedp1000 hsgrad poverty unemp pcinck,
 provide an interpretation of each of the regression coefficients.
 
-$\hat\beta_{0}$ = 2.98003
-$\hat\beta_{1}$ = 0.04832
-$\hat\beta_{2}$ = 0.15378
-$\hat\beta_{3}$ = 0.01711
-$\hat\beta_{4}$ = 0.04025	
-$\hat\beta_{5}$ = -0.02622
-$\hat\beta_{6}$ = 0.06515
+* $\hat\beta_{0}$ = 2.98003. Intercept of the line. The expected value of “logdocper” when all independent variables in the model are equal to zero. 
+* $\hat\beta_{1}$ = 0.04832. The percent increase of “docper” for a one percent increase in “popdens”, controlling for the other variables in the model. 
+* $\hat\beta_{2}$ = 0.15378. The percent increase of “docper” for a one-unit increase in “bedp1000”, controlling for the other variables in the model.
+* $\hat\beta_{3}$ = 0.01711. The percent increase of “docper” for a one-unit increase in “hsgrad”, controlling for the other variables in the model.
+* $\hat\beta_{4}$ = 0.04025. The percent increase of “docper” for a one-unit increase in “poverty”, controlling for the other variables in the model.
+* $\hat\beta_{5}$ = -0.02622. The percent decrease of “docper” for a one-unit increase in “unemp”, controlling for the other variables in the model.
+* $\hat\beta_{6}$ = 0.06515. The percent increase of “docper” for a one-unit increase in “pcinck”, controlling for the other variables in the model.
