@@ -31,11 +31,12 @@ df1 <- df %>%
 df2 <- df %>% 
   mutate(fsi2missing = ifelse(is.na(fsi2), TRUE, FALSE)) %>% 
   filter(fsi2missing == FALSE)
-
 ```
 
-
+create list of variables to loop through for tests (excluding income3 and site)
 ```{r}
-df %>% t.test(isi1)
+varslist <- c("cesd1", "fsi1", "isi1", "bmi", "ageBaseline", 
+              "ageDiagnosis", "yearsSinceDiagnosis", "married")
+varslist
 ```
 
