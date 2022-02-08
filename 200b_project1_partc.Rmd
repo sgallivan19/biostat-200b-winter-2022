@@ -85,3 +85,21 @@ married
 t.test(df1$married, df2$married)
 ```
 
+Create dummy variables for site and income 3
+```{r}
+df <- df %>% 
+  #site reference = group 1 
+  mutate(site2 = ifelse(site == 2, 1, 0)) %>% 
+  mutate(site3 = ifelse(site == 3, 1, 0)) %>% 
+  #income3 reference = group 3
+  mutate(income2 = ifelse(income3 == 2, 1, 0)) %>% 
+  mutate(income1 = ifelse(income3 == 1, 1, 0))
+```
+
+
+Linear model 
+```{r}
+model <- lm(fsi2 ~ income1 + income2 + site2 + site3 + bmi, data = df)
+summary(model)
+```
+
