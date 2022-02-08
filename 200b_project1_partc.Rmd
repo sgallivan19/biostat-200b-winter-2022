@@ -33,13 +33,6 @@ df2 <- df %>%
   filter(fsi2missing == FALSE)
 ```
 
-create list of variables to loop through for tests (excluding income3 and site)
-```{r}
-varslist <- c("cesd1", "fsi1", "isi1", "bmi", "ageBaseline", 
-              "ageDiagnosis", "yearsSinceDiagnosis", "married")
-varslist
-```
-
 CESD1
 ```{r}
 t.test(df1$cesd1, df2$cesd1)
