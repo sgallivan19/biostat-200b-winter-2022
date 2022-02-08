@@ -36,13 +36,14 @@ df <- df %>%
   mutate(fsi_indic = ifelse(is.na(fsi2), 0, 1))
 ```
 
-site and income3 chi square test.
+site and income3 fisher exact test.
 ```{r}
 site_table <- table(df$fsi_indic, df$site)
-chisq.test(site_table)
 
 income_table <- table(df$fsi_indic, df$income3)
-chisq.test(income_table)
+
+fisher.test(site_table)
+fisher.test(income_table)
 ```
 
 CESD1
