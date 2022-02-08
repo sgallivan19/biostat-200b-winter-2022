@@ -40,3 +40,38 @@ varslist <- c("cesd1", "fsi1", "isi1", "bmi", "ageBaseline",
 varslist
 ```
 
+CESD1
+```{r}
+t.test(df1$cesd1, df2$cesd1)
+```
+
+FSI1
+```{r}
+t.test(df1$fsi1, df2$fsi1)
+```
+
+ISI1
+```{r}
+t.test(df1$isi1, df2$isi1)
+```
+
+```{r}
+t.test(df1$bmi, df2$bmi)
+```
+
+```{r}
+t.test(df1$ageBaseline, df2$ageBaseline)
+```
+
+```{r}
+t.test(df1$ageDiagnosis, df2$ageDiagnosis)
+```
+
+```{r}
+t.test(df1$yearsSinceDiagnosis, df2$yearsSinceDiagnosis)
+```
+
+```{r}
+t.test(df1$married, df2$married)
+```
+
