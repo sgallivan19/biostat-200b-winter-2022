@@ -16,11 +16,12 @@ setwd("/Users/seamusgallivan/biostat-200b-winter-2022")
 df <- haven::read_sas("/Users/seamusgallivan/Documents/ucla/200B/projects/ptw_project1.sas7bdat")
 ```
 
-**Preliminary analyses** 
+Preliminary analyses 
 
 BMI is significant between the two groups at p < .1 level. 
 
 Now, I am going to check if there is a significant difference between the evaluable group and the non-evaluable group means for baseline variables. 
+
 ```{r}
 #df1 = evaluable data frame
 df1 <- df %>% 
@@ -35,7 +36,7 @@ df <- df %>%
   mutate(fsi_indic = ifelse(is.na(fsi2), 0, 1))
 ```
 
-site and income3 chi square tests
+site and income3 chi square test.
 ```{r}
 site_table <- table(df$fsi_indic, df$site)
 chisq.test(site_table)
@@ -59,22 +60,27 @@ ISI1
 t.test(df1$isi1, df2$isi1)
 ```
 
+bmi
 ```{r}
 t.test(df1$bmi, df2$bmi)
 ```
 
+agebaseline
 ```{r}
 t.test(df1$ageBaseline, df2$ageBaseline)
 ```
 
+agediagnosis
 ```{r}
 t.test(df1$ageDiagnosis, df2$ageDiagnosis)
 ```
 
+years since diagnosis 
 ```{r}
 t.test(df1$yearsSinceDiagnosis, df2$yearsSinceDiagnosis)
 ```
 
+married
 ```{r}
 t.test(df1$married, df2$married)
 ```
