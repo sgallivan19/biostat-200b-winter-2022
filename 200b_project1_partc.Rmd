@@ -23,10 +23,19 @@ BMI is significant between the two groups at p < .1 level.
 
 Now, I am going to check if there is a significant difference between the evaluable group and the non-evaluable group means for baseline variables. 
 
-*Create indicator variable for whether or not FSI2 data is missing for that patient*
+*Create and evaluable and inevaluable data frame with respect to FSI2*
 ```{r}
 df1 <- df %>% 
-  mutate(fsi2missing = ifelse(is.na(fsi2), TRUE, FALSE))
+  mutate(fsi2missing = ifelse(is.na(fsi2), TRUE, FALSE)) %>% 
+  filter(fsi2missing == TRUE)
+df2 <- df %>% 
+  mutate(fsi2missing = ifelse(is.na(fsi2), TRUE, FALSE)) %>% 
+  filter(fsi2missing == FALSE)
+
 ```
 
+
+```{r}
+df %>% t.test(isi1)
+```
 
