@@ -16,13 +16,11 @@ setwd("/Users/seamusgallivan/biostat-200b-winter-2022")
 df <- haven::read_sas("/Users/seamusgallivan/Documents/ucla/200B/projects/ptw_project1.sas7bdat")
 ```
 
-
-Preliminary analyses 
+**Preliminary analyses** 
 
 BMI is significant between the two groups at p < .1 level. 
 
 Now, I am going to check if there is a significant difference between the evaluable group and the non-evaluable group means for baseline variables. 
-
 ```{r}
 #df1 = evaluable data frame
 df1 <- df %>% 
