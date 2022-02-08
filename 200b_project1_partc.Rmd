@@ -99,7 +99,8 @@ df <- df %>%
 
 Linear model 
 ```{r}
-model <- lm(fsi2 ~ income1 + income2 + site2 + site3 + bmi, data = df)
+model <- lm(fsi2 ~ tx_group + income1 + income2 + site2 + site3 + 
+              bmi + fsi1, data = df)
 summary(model)
 ```
 
