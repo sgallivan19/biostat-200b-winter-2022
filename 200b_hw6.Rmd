@@ -16,9 +16,14 @@ library(tidyverse)
 senic <- read_csv("/Users/seamusgallivan/Documents/ucla/200B/data/senic.csv")
 ```
 
-
+Model regressing loglength on xray, census and age
 
 ```{r}
-
+#create log transformed length 
+senic <- senic %>% 
+  mutate(loglength = log(length))
+#model 
+model1 <- lm(loglength ~ xray + census + age, data = senic)
+summary(model1)
 ```
 
