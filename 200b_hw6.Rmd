@@ -12,6 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 Read in senic data
 
 ```{r}
+library(car)
+library(MASS)
 library(tidyverse)
 senic <- read_csv("/Users/seamusgallivan/Documents/ucla/200B/data/senic.csv")
 ```
@@ -25,5 +27,23 @@ senic <- senic %>%
 #model 
 model1 <- lm(loglength ~ xray + census + age, data = senic)
 summary(model1)
+```
+
+Leverage, studentized residuals and Cook's D plots. 
+
+```{r}
+#leverage plots
+leveragePlots(model1)
+#studentized residual 
+stud_resids <- as_tibble(studres(model1))
+#create row index column in stud_resids to help with join 
+stud_resids$index <- seq.int(nrow(stud_resids))
+#left join 
+senic <- senic %>% 
+  left_join(stud_resids, by = c("id" = "index"))
+#rename value to studres 
+rename(senic, sres_value = value)
+#plot 
+sres <- ggplot(, aes(cty, hwy))
 ```
 
