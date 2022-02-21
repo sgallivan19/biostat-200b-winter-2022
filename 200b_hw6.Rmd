@@ -80,5 +80,10 @@ reduced_model <- lm(loglength ~ xray + census + age, data = senic2)
 summary(reduced_model)
 #compare to full 
 summary(model1)
+anova(reduced_model)
+anova(model1)
 ```
 
+regression coefficients: All regression coefficients are less in the reduced model except for the intercept.
+p-values: p-values are more significant for the full model. 
+MSE: The MSE is greater for the full model.
