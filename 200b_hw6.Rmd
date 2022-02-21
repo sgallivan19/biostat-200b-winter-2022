@@ -29,7 +29,7 @@ model1 <- lm(loglength ~ xray + census + age, data = senic)
 summary(model1)
 ```
 
-Leverage, studentized residuals and Cook's D plots. 
+Leverage, studentized residuals and Cook's D plots
 
 ```{r}
 #leverage plots
@@ -42,8 +42,9 @@ stud_resids$index <- seq.int(nrow(stud_resids))
 senic <- senic %>% 
   left_join(stud_resids, by = c("id" = "index"))
 #rename value to studres 
-rename(senic, sres_value = value)
+senic <- rename(senic, sres_value = value)
 #plot 
-sres <- ggplot(, aes(cty, hwy))
+sres <- ggplot(senic, aes(id, sres_value))
+sres + geom_point()
 ```
 
