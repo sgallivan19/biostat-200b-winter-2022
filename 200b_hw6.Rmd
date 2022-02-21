@@ -112,6 +112,26 @@ senic <- senic %>%
 **Part B**
 
 ```{r}
+#distribution of region, beds, services, medsch, xray, length, npr 
+hist(senic$region)
+hist(senic$beds)
+hist(senic$svcs)
+hist(senic$msch)
+hist(senic$xray)
+hist(senic$length)
+hist(senic$npr)
+```
+
+Variables 'length' and 'beds' are positively skewed.
+
+```{r}
+senic <- senic %>% 
+  mutate(loglength = log(length), logbeds = log(beds))
+```
+
+**Part C**
+
+```{r}
 
 ```
 
