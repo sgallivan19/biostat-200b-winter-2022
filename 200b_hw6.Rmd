@@ -169,3 +169,14 @@ AIC(modelc6)
 AIC(modelc7)
 ```
 
+**Part D**
+
+| Vars                                                   | AIC     | BIC      | Cp       |
+|:------------------------------------------------------:|:-------:|:--------:|:--------:|
+|loglength                                               |351.3502 |-31.16708 |37.571261 |
+|loglength + npr                                         |338.3592 |-41.43067 |21.361208 |
+|loglength + npr + logbeds                               |330.1735 |-46.88905 |12.296947 |
+|loglength + npr + logbeds + xray                        |322.6556 |-51.67953 |4.821788  |     
+|loglength + npr + logbeds + xray + region               |322.4082 |-49.19952 |4.698585  |
+|loglength + npr + logbeds + xray + region + msch        |323.7053 |-45.17509 |6.043083  |
+|loglength + npr + logbeds + xray + region + msch + svcs |325.6589 |-40.49406 |8.000000  |
