@@ -56,3 +56,13 @@ ols_plot_cooksd_bar(model1)
 ```
 
 **Part B**
+
+```{r}
+fivenum(senic$loglength)
+fivenum(senic$xray)
+fivenum(senic$census)
+fivenum(senic$age)
+```
+
+Hospitals 47 and 112 have the highest Cook's D values.
+Based on the plots, they have large leverage values and studentized residual values of 2 or greater. In comparison to their five number (min, 25th percentile, median, 75th percentile, max) summary, they have above 75th percentile log(length) values, above 50th percentile xray values, above 75th percentile census values and above 75th percentile age values. 
