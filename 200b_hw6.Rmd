@@ -68,3 +68,17 @@ arrange(senic, desc(loglength))
 
 Hospitals 47 and 112 have the highest Cook's D values.
 Based on the plots, they have large leverage values and studentized residual values of 2 or greater. In comparison to their five number (min, 25th percentile, median, 75th percentile, max) summary, they have above 75th percentile log(length) values, above 50th percentile xray values, above 75th percentile census values and above 75th percentile age values. Most notably, hospital 47 has the largest Log(length) value and hospital 112 has the second highest. 
+
+**Part C**
+
+```{r}
+#create reduced df senic2 
+senic2 <- senic %>%  
+  filter(!id %in% c(47, 112))
+#reduced model 
+reduced_model <- lm(loglength ~ xray + census + age, data = senic2)
+summary(reduced_model)
+#compare to full 
+summary(model1)
+```
+
