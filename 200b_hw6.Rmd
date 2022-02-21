@@ -19,6 +19,8 @@ library(tidyverse)
 senic <- read_csv("/Users/seamusgallivan/Documents/ucla/200B/data/senic.csv")
 ```
 
+## Question 2 
+
 Model regressing loglength on xray, census and age
 
 ```{r}
@@ -29,6 +31,8 @@ senic <- senic %>%
 model1 <- lm(loglength ~ xray + census + age, data = senic)
 summary(model1)
 ```
+
+**Part A**
 
 Leverage, studentized residuals and Cook's D plots
 
@@ -51,3 +55,4 @@ sres + geom_point()
 ols_plot_cooksd_bar(model1)
 ```
 
+**Part B**
