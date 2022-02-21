@@ -88,4 +88,15 @@ regression coefficients: All regression coefficients are less in the reduced mod
 p-values: p-values are more significant for the full model. 
 MSE: The MSE is greater for the full model.
 
+**Part D**
+
+```{r}
+#component + residual plot 
+crPlots(model1)
+#log transform census??
+senic <- senic %>% 
+  mutate(logcensus = log(census))
+model2 <- lm(loglength ~ age + xray + logcensus, data = senic)
+summary(model2)
+```
 
