@@ -100,3 +100,18 @@ model2 <- lm(loglength ~ age + xray + logcensus, data = senic)
 summary(model2)
 ```
 
+## Question 3 
+
+**Part A** 
+```{r}
+#create nurse/patient ratio variable 
+senic <- senic %>% 
+  mutate(npr = nurses / census)
+```
+
+**Part B**
+
+```{r}
+
+```
+
