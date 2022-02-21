@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Read in senic data
 
 ```{r}
+library(olsrr)
 library(car)
 library(MASS)
 library(tidyverse)
@@ -43,8 +44,10 @@ senic <- senic %>%
   left_join(stud_resids, by = c("id" = "index"))
 #rename value to studres 
 senic <- rename(senic, sres_value = value)
-#plot 
+#sres plot 
 sres <- ggplot(senic, aes(id, sres_value))
 sres + geom_point()
+#Cook's D
+ols_plot_cooksd_bar(model1)
 ```
 
