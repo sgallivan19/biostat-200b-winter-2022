@@ -138,7 +138,7 @@ Cp and BIC values for 7 best models.
 #best subset model 
 bestsub.model <- regsubsets(risk ~ region + logbeds + svcs + msch + xray +
                               loglength + npr, 
-                            data = senic, nvmax = 7)
+                            data = senic, nbest = 4, nvmax = 7)
 
 summary(bestsub.model)
 #Consider Cp, AIC, BIC
