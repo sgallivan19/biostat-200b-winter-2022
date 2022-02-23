@@ -148,6 +148,7 @@ summary(bestsub.model)
 )
 ```
 
+
 AIC for those 7 best models 
 
 ```{r}
