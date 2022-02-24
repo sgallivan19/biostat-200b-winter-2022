@@ -22,7 +22,7 @@ senic <- read_csv("/Users/seamusgallivan/Documents/ucla/200B/data/senic.csv")
 
 ## Question 2 
 
-Model regressing loglength on xray, census and age
+Model regressing loglength on xray, census and age.
 
 ```{r}
 #create log transformed length 
@@ -35,7 +35,7 @@ summary(model1)
 
 **Part A**
 
-Leverage, studentized residuals and Cook's D plots
+Leverage, studentized residuals and Cook's D plots.
 
 ```{r}
 #leverage plots
@@ -56,6 +56,8 @@ sres + geom_point()
 ols_plot_cooksd_bar(model1)
 ```
 
+Observation 47 and 112 seem to have unusual values. 
+
 **Part B**
 
 ```{r}
@@ -68,7 +70,7 @@ arrange(senic, desc(loglength))
 ```
 
 Hospitals 47 and 112 have the highest Cook's D values.
-Based on the plots, they have large leverage values and studentized residual values of 2 or greater. In comparison to their five number (min, 25th percentile, median, 75th percentile, max) summary, they have above 75th percentile log(length) values, above 50th percentile xray values, above 75th percentile census values and above 75th percentile age values. Most notably, hospital 47 has the largest Log(length) value and hospital 112 has the second highest. 
+Based on the plots, they have large leverage values and studentized residual values of 2 or greater. In comparison to their five number (min, 25th percentile, median, 75th percentile, max) summary, they have above 75th percentile log(length) values, above 50th percentile xray values, above 75th percentile census values and above 75th percentile age values. Most notably, hospital 47 has the largest Log(length) value and hospital 112 has the second highest. I believe high predicted value coupled with high leverage and residual values makes them have a high Cook's D value. 
 
 **Part C**
 
@@ -101,6 +103,8 @@ model2 <- lm(loglength ~ age + xray + logcensus, data = senic)
 summary(model2)
 ```
 
+Based on the shape of the component plus residual plot, I log transformed the census variable.
+
 ## Question 3 
 
 **Part A** 
@@ -126,6 +130,7 @@ hist(senic$npr)
 Variables 'length' and 'beds' are positively skewed.
 
 ```{r}
+#log transform length and beds 
 senic <- senic %>% 
   mutate(loglength = log(length), logbeds = log(beds))
 ```
