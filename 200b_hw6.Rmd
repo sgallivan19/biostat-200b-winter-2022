@@ -132,7 +132,7 @@ senic <- senic %>%
 
 **Part C**
 
-Cp and BIC values for 7 best models. 
+Best 3 models for each model size + Cp and BIC values. 
 
 ```{r}
 #best subset model 
@@ -141,43 +141,37 @@ bestsub.model <- regsubsets(risk ~ region + logbeds + svcs + msch + xray +
                             data = senic, nbest = 3, nvmax = 7)
 
 summary(bestsub.model)
-#Consider Cp, AIC, BIC
+#Consider Cp, AIC
   cbind( 
     Cp     = summary(bestsub.model)$cp,
     BIC    =summary(bestsub.model)$bic
 )
 ```
 
-
-AIC for those 7 best models 
+The 5 best models are the same based on either Cp or BIC. Let's now look at the AIC for those 5 models.  
 
 ```{r}
-modelc1 <- lm(risk ~ loglength, data = senic)
-modelc2 <- lm(risk ~ loglength + npr, data = senic)
-modelc3 <- lm(risk ~ loglength + npr + logbeds, data = senic)
-modelc4 <- lm(risk ~ loglength + npr + logbeds + xray, data = senic)
-modelc5 <- lm(risk ~ loglength + npr + logbeds + xray + region, data = senic)
-modelc6 <- lm(risk ~ loglength + npr + logbeds + xray + region + msch, 
-              data = senic)
-modelc7 <- lm(risk ~ loglength + npr + logbeds + xray + region + msch + svcs, 
+modelc1 <- lm(risk ~ loglength + npr + logbeds + xray, data = senic)
+modelc2 <- lm(risk ~ loglength + npr + logbeds + xray + region, data = senic)
+modelc3 <- lm(risk ~ loglength + npr + logbeds + xray + msch, data = senic)
+modelc4 <- lm(risk ~ loglength + npr + logbeds + xray + svcs, data = senic)
+modelc5 <- lm(risk ~ loglength + npr + logbeds + xray + region + msch, 
               data = senic)
 AIC(modelc1)
 AIC(modelc2)
 AIC(modelc3)
 AIC(modelc4)
 AIC(modelc5)
-AIC(modelc6)
-AIC(modelc7)
 ```
+
+Cp and AIC align with those 5 models. I am going to decide that those are the 5 best fitting models and rank choice those 5 based on Cp/AIC instead of BIC.
 
 **Part D**
 
 | Vars                                                   | AIC     | BIC      | Cp       |
 |:------------------------------------------------------:|:-------:|:--------:|:--------:|
-|loglength                                               |351.3502 |-31.16708 |37.571261 |
-|loglength + npr                                         |338.3592 |-41.43067 |21.361208 |
-|loglength + npr + logbeds                               |330.1735 |-46.88905 |12.296947 |
-|loglength + npr + logbeds + xray                        |322.6556 |-51.67953 |4.821788  |     
 |loglength + npr + logbeds + xray + region               |322.4082 |-49.19952 |4.698585  |
+|loglength + npr + logbeds + xray                        |322.6556 |-51.67953 |4.821788  |
+|loglength + npr + logbeds + xray + msch                 |324.0364 |-47.57131 |6.232614  |
+|loglength + npr + logbeds + xray + svcs                 |324.588  |-47.01979 |6.757264  |     
 |loglength + npr + logbeds + xray + region + msch        |323.7053 |-45.17509 |6.043083  |
-|loglength + npr + logbeds + xray + region + msch + svcs |325.6589 |-40.49406 |8.000000  |
