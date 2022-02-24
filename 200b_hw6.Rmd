@@ -164,7 +164,7 @@ AIC(modelc4)
 AIC(modelc5)
 ```
 
-Cp and AIC align with those 5 models. I am going to decide that those are the 5 best fitting models and rank choice those 5 based on Cp/AIC instead of BIC.
+The top 3 models vary depending on whether we use AIC, BIC or Cp. I am going to rank my models using AIC since it is the most happy medium between the 3 measurements.
 
 **Part D**
 
